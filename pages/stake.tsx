@@ -11,6 +11,7 @@ import {
 import { BigNumber, ethers } from "ethers";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
+import Image from 'next/image';
 import NFTCard from "../components/NFTCard";
 import {
   nftDropContractAddress,
@@ -67,19 +68,20 @@ const Stake: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Stake NFTs for 'PERKS'</h1>
+      <h1 className={styles.h1}>Stake NFTs for &apos;PERKS&apos;</h1>
       <div style={{ padding: "5px 0" }}>
-        <img 
-          src="/icons/PERKS.png" 
+        <Image
+          src="/icons/PERKS.png"
           alt="Little World Staking"
           width={100}
           height={100}
+          priority
         />
       </div>
       <hr className={`${styles.divider} ${styles.spacerTop}`} />
 
       {!address ? (
-        <ConnectWallet 
+        <ConnectWallet
           theme="dark"
           btnTitle="Connect Wallet"
           hideTestnetFaucet={true}
@@ -100,7 +102,7 @@ const Stake: NextPage = () => {
         />
       ) : (
         <>
-          <h2>Your Tokens</h2>
+          <h2 className={styles.heading2}>Your Tokens</h2>
           <div className={styles.tokenGrid}>
             <div className={styles.tokenItem}>
               <h3 className={styles.tokenLabel}>Claimable Rewards</h3>
@@ -131,7 +133,7 @@ const Stake: NextPage = () => {
           </div>
 
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
-          <h2>Your Staked NFTs</h2>
+          <h2 className={styles.heading2}>Your Staked NFTs</h2>
           <div className={styles.nftBoxGrid}>
             {stakedTokens &&
               stakedTokens[0]?.map((stakedToken: BigNumber) => (
@@ -143,7 +145,7 @@ const Stake: NextPage = () => {
           </div>
 
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
-          <h2>Your Unstaked NFTs</h2>
+          <h2 className={styles.heading2}>Your Unstaked NFTs</h2>
           <div className={styles.nftBoxGrid}>
             {ownedNfts?.map((nft) => (
               <div className={styles.nftBox} key={nft.metadata.id.toString()}>
