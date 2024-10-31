@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -7,38 +8,36 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   return (
-    <div className={styles.container}>
-      {/* Top Section */}
-      <h1 className={styles.h1}>thirdweb Deploy - Custom Staking Contract</h1>
-      <div className={styles.nftBoxGrid}>
-        <div
-          className={styles.optionSelectBox}
-          role="button"
-          onClick={() => router.push("/mint")}
-        >
-          {/* Mint a new NFT */}
-          <Image src="/icons/drop.webp" alt="drop" width={64} height={64} />
-          <h2 className={styles.selectBoxTitle}>Mint a new NFT</h2>
-          <p className={styles.selectBoxDescription}>
-            Use the NFT Drop Contract to claim an NFT from the collection.
-          </p>
-        </div>
+    <>
+      <Head>
+        <title>LITTLE WORLD Staking</title>
+        <meta name="description" content="Stake your LITTLE WORLD PFPs for LITTLE PERKS" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <div
-          className={styles.optionSelectBox}
-          role="button"
-          onClick={() => router.push("/stake")}
-        >
-          {/* Staking an NFT */}
-          <Image src="/icons/token.webp" alt="token" width={64} height={64} />
-          <h2 className={styles.selectBoxTitle}>Stake Your NFTs</h2>
-          <p className={styles.selectBoxDescription}>
-            Use the custom staking contract deployed via <b>thirdweb Deploy</b>{" "}
-            to stake your NFTs, and earn tokens from the <b>Token</b> contract.
-          </p>
+      <div className={styles.container}>
+        {/* Top Section */}
+        <h1 className={styles.h1}>GOOD SMILE is GOOD STYLE</h1>
+        <div className={styles.nftBoxGrid}>
+          <div
+            className={styles.optionSelectBox}
+            role="button"
+            onClick={() => router.push("/stake")}
+            style={{ paddingTop: '10px', paddingBottom: '10px', height: 'calc(100% + 10px)' }}
+          >
+            {/* Staking an NFT */}
+            <Image src="/icons/globeski.png" alt="token" width={64} height={64} />
+            <h2 className={styles.selectBoxTitle}>LITTLE WORLD Staking</h2>
+            <p className={styles.selectBoxDescription}>
+              Stake your LITTLE WORLD PFPs for <b>LITTLE PERKS</b>.
+              <br />
+              <br />
+              <i style={{ display: 'block', textAlign: 'center' }}>Let's Friggin' Go!</i>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

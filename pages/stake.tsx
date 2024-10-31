@@ -67,11 +67,37 @@ const Stake: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Stake Your NFTs</h1>
+      <h1 className={styles.h1}>Stake NFTs for 'PERKS'</h1>
+      <div style={{ padding: "5px 0" }}>
+        <img 
+          src="/icons/PERKS.png" 
+          alt="Little World Staking"
+          width={100}
+          height={100}
+        />
+      </div>
       <hr className={`${styles.divider} ${styles.spacerTop}`} />
 
       {!address ? (
-        <ConnectWallet />
+        <ConnectWallet 
+          theme="dark"
+          btnTitle="Connect Wallet"
+          hideTestnetFaucet={true}
+          modalTitle="LITTLE WORLD"
+          modalSize="wide"
+          welcomeScreen={{
+            title: "LITTLE WORLD Staking",
+            subtitle: "Connect your wallet to stake"
+          }}
+          modalTitleIconUrl="/icons/globeski.png"
+          removeConnectWithMoreWalletsButton={true}
+          termsOfServiceUrl="https://www.mrbriandesign.com/terms"
+          termsOfServiceText="By connecting, you agree to our Terms of Service"
+          auth={{
+            loginOptional: true
+          }}
+          thirdwebBranding={false}
+        />
       ) : (
         <>
           <h2>Your Tokens</h2>
@@ -95,12 +121,14 @@ const Stake: NextPage = () => {
             </div>
           </div>
 
-          <Web3Button
-            action={(contract) => contract.call("claimRewards")}
-            contractAddress={stakingContractAddress}
-          >
-            Claim Rewards
-          </Web3Button>
+          <div className={styles.centerButton}>
+            <Web3Button
+              action={(contract) => contract.call("claimRewards")}
+              contractAddress={stakingContractAddress}
+            >
+              Claim Rewards
+            </Web3Button>
+          </div>
 
           <hr className={`${styles.divider} ${styles.spacerTop}`} />
           <h2>Your Staked NFTs</h2>
@@ -124,12 +152,14 @@ const Stake: NextPage = () => {
                   className={styles.nftMedia}
                 />
                 <h3>{nft.metadata.name}</h3>
-                <Web3Button
-                  contractAddress={stakingContractAddress}
-                  action={() => stakeNft(nft.metadata.id)}
-                >
-                  Stake
-                </Web3Button>
+                <div className={styles.centerButton}>
+                  <Web3Button
+                    contractAddress={stakingContractAddress}
+                    action={() => stakeNft(nft.metadata.id)}
+                  >
+                    Stake
+                  </Web3Button>
+                </div>
               </div>
             ))}
           </div>

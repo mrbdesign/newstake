@@ -22,7 +22,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   return (
     <>
       {nft && (
-        <div className={styles.nftBox}>
+        <div className={styles.nftBox} style={{ textAlign: 'center' }}>
           {nft.metadata && (
             <ThirdwebNftMedia
               metadata={nft.metadata}
@@ -30,15 +30,18 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             />
           )}
           <h3>{nft.metadata.name}</h3>
-          <Web3Button
-            action={(contract) => contract?.call("withdraw", [[nft.metadata.id]])}
-            contractAddress={stakingContractAddress}
-          >
-            Withdraw
-          </Web3Button>
+          <div className={styles.centerButton}>
+            <Web3Button
+              action={(contract) => contract?.call("withdraw", [[nft.metadata.id]])}
+              contractAddress={stakingContractAddress}
+            >
+              Withdraw
+            </Web3Button>
+          </div>
         </div>
       )}
     </>
   );
 };
+
 export default NFTCard;
