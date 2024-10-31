@@ -92,13 +92,11 @@ const Stake: NextPage = () => {
             subtitle: "Connect your wallet to stake"
           }}
           modalTitleIconUrl="/icons/globeski.png"
-          removeConnectWithMoreWalletsButton={true}
           termsOfServiceUrl="https://www.mrbriandesign.com/terms"
-          termsOfServiceText="By connecting, you agree to our Terms of Service"
           auth={{
             loginOptional: true
           }}
-          thirdwebBranding={false}
+       
         />
       ) : (
         <>

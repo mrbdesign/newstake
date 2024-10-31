@@ -32,7 +32,7 @@ const Home: NextPage = () => {
               Stake your LITTLE WORLD PFPs for <b>LITTLE PERKS</b>.
               <br />
               <br />
-              <i style={{ display: 'block', textAlign: 'center' }}>Let's Friggin' Go!</i>
+              <i style={{ display: 'block', textAlign: 'center' }}>Lets Friggin Go!</i>
             </p>
           </div>
         </div>
