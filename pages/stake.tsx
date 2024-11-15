@@ -89,14 +89,15 @@ const Stake: NextPage = () => {
           modalSize="wide"
           welcomeScreen={{
             title: "LITTLE WORLD Staking",
-            subtitle: "Connect your wallet to stake"
+            subtitle: "Connect your wallet to stake",
+            description: "Stake your LITTLE WORLD PFPs for LITTLE PERKS"
           }}
           modalTitleIconUrl="/icons/globeski.png"
           termsOfServiceUrl="https://www.mrbriandesign.com/terms"
           auth={{
             loginOptional: true
           }}
-       
+          className={styles.connectWalletBtn}
         />
       ) : (
         <>
