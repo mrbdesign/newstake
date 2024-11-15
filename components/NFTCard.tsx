@@ -12,8 +12,6 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   const { contract } = useContract(nftDropContractAddress, "nft-drop");
   const { data: nft, isLoading } = useNFT(contract, tokenId);
 
-  console.log("NFT Data:", nft); 
-
   if (isLoading) {
     return <div className={styles.nftBox}>Loading NFT...</div>;
   }
@@ -21,7 +19,17 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   return (
     <>
       {nft && (
-        <div className={styles.nftBox} style={{ textAlign: 'center' }}>
+        <div 
+          className={styles.nftBox} 
+          style={{ 
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '1rem'
+          }}
+        >
           {nft.metadata && (
             <>
               <ThirdwebNftMedia
