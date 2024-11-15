@@ -5,11 +5,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '*',
+        hostname: '**',
       },
       {
         protocol: 'http',
-        hostname: '*',
+        hostname: '**',
       },
       {
         protocol: 'https',
@@ -19,11 +19,21 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'gateway.ipfscdn.io',
       },
+      {
+        protocol: 'https',
+        hostname: 'nftstorage.link',
+      }
     ],
-    domains: ['ipfs.thirdwebcdn.com', 'gateway.ipfscdn.io'],
+    domains: [
+      'ipfs.thirdwebcdn.com',
+      'gateway.ipfscdn.io',
+      'nftstorage.link',
+      'ipfs.io'
+    ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: true
   },
 }
 
