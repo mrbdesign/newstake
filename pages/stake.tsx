@@ -97,8 +97,7 @@ const Stake: NextPage = () => {
           modalSize="wide"
           welcomeScreen={{
             title: "LITTLE WORLD Staking",
-            subtitle: "Connect your wallet to stake",
-            description: "Stake your LITTLE WORLD PFPs for LITTLE PERKS",
+            subtitle: "Connect your wallet to stake\nStake your LITTLE WORLD PFPs for LITTLE PERKS",
             titleIcon: "/icons/globeski.png"
           }}
           termsOfServiceUrl="https://www.mrbriandesign.com/terms"
