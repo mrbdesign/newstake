@@ -17,7 +17,11 @@ interface NFTCardProps {
 
 const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   const { contract } = useContract(nftDropContractAddress, "nft-drop");
-  const { data: nft } = useNFT(contract, tokenId);
+  const { data: nft, isLoading } = useNFT(contract, tokenId);
+
+  if (isLoading) {
+    return <div className={styles.nftBox}>Loading NFT...</div>;
+  }
 
   return (
     <>
@@ -27,12 +31,20 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
             <ThirdwebNftMedia
               metadata={nft.metadata}
               className={styles.nftMedia}
+              height="200px"
+              width="200px"
             />
           )}
           <h3>{nft.metadata.name}</h3>
           <div className={styles.centerButton}>
             <Web3Button
-              action={(contract) => contract?.call("withdraw", [[nft.metadata.id]])}
+              action={async (contract) => {
+                try {
+                  await contract?.call("withdraw", [[nft.metadata.id]]);
+                } catch (error) {
+                  console.log("Error withdrawing NFT:", error);
+                }
+              }}
               contractAddress={stakingContractAddress}
             >
               Withdraw

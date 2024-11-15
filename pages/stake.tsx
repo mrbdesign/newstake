@@ -42,8 +42,12 @@ const Stake: NextPage = () => {
     if (!contract || !address) return;
 
     async function loadClaimableRewards() {
-      const stakeInfo = await contract?.call("getStakeInfo", [address]);
-      setClaimableRewards(stakeInfo[1]);
+      try {
+        const stakeInfo = await contract?.call("getStakeInfo", [address]);
+        setClaimableRewards(stakeInfo[1]);
+      } catch (error) {
+        console.log("Error loading rewards:", error);
+      }
     }
 
     loadClaimableRewards();
@@ -52,14 +56,18 @@ const Stake: NextPage = () => {
   async function stakeNft(id: string) {
     if (!address) return;
 
-    const isApproved = await nftDropContract?.isApproved(
-      address,
-      stakingContractAddress
-    );
-    if (!isApproved) {
-      await nftDropContract?.setApprovalForAll(stakingContractAddress, true);
+    try {
+      const isApproved = await nftDropContract?.isApproved(
+        address,
+        stakingContractAddress
+      );
+      if (!isApproved) {
+        await nftDropContract?.setApprovalForAll(stakingContractAddress, true);
+      }
+      await contract?.call("stake", [[id]]);
+    } catch (error) {
+      console.log("Error staking:", error);
     }
-    await contract?.call("stake", [[id]]);
   }
 
   if (isLoading) {
@@ -90,9 +98,9 @@ const Stake: NextPage = () => {
           welcomeScreen={{
             title: "LITTLE WORLD Staking",
             subtitle: "Connect your wallet to stake",
-            description: "Stake your LITTLE WORLD PFPs for LITTLE PERKS"
+            description: "Stake your LITTLE WORLD PFPs for LITTLE PERKS",
+            titleIcon: "/icons/globeski.png"
           }}
-          modalTitleIconUrl="/icons/globeski.png"
           termsOfServiceUrl="https://www.mrbriandesign.com/terms"
           auth={{
             loginOptional: true
