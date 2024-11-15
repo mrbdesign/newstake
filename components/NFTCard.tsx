@@ -12,11 +12,7 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
   const { contract } = useContract(nftDropContractAddress, "nft-drop");
   const { data: nft, isLoading } = useNFT(contract, tokenId);
 
-  const getIPFSGatewayURL = (ipfsUrl: string) => {
-    const gateway = "https://ipfs.io/ipfs/";
-    const cid = ipfsUrl.replace("ipfs://", "");
-    return gateway + cid;
-  };
+  console.log("NFT Data:", nft); 
 
   if (isLoading) {
     return <div className={styles.nftBox}>Loading NFT...</div>;
@@ -28,18 +24,13 @@ const NFTCard: FC<NFTCardProps> = ({ tokenId }) => {
         <div className={styles.nftBox} style={{ textAlign: 'center' }}>
           {nft.metadata && (
             <>
-              <div style={{ margin: '0 auto', width: '200px', height: '200px' }}>
-                <ThirdwebNftMedia
-                  metadata={{
-                    ...nft.metadata,
-                    image: nft.metadata.image ? getIPFSGatewayURL(nft.metadata.image as string) : undefined
-                  }}
-                  className={styles.nftMedia}
-                  height="200px"
-                  width="200px"
-                  controls={false}
-                />
-              </div>
+              <ThirdwebNftMedia
+                metadata={nft.metadata}
+                className={styles.nftMedia}
+                height="200px"
+                width="200px"
+                controls={false}
+              />
               <h3>{nft.metadata.name || `NFT #${tokenId}`}</h3>
             </>
           )}
